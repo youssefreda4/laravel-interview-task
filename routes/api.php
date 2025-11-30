@@ -3,8 +3,10 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\HoldController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PaymentWebhookLogController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -23,3 +25,6 @@ Route::prefix('orders')->controller(OrderController::class)->group(function () {
     Route::get('/', 'index');
     Route::post('/', 'store');
 });
+
+// payment webhook log
+Route::get('payments/webhook', [PaymentWebhookLogController::class, 'index']);
