@@ -18,4 +18,12 @@ class OrderController extends Controller
             __('Orders retrieved successfully')
         );
     }
+
+    public function show(Order $order)
+    {
+        return $this->successResponse(
+            new OrderResource($order),
+            __('Order retrieved successfully')
+        );
+    }
 }

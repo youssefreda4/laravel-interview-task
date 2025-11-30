@@ -19,4 +19,12 @@ class HoldController extends Controller
             __('Holds retrieved successfully')
         );
     }
+
+    public function show(Hold $hold)
+    {
+        return $this->successResponse(
+            new HoldResource($hold),
+            __('Hold retrieved successfully')
+        );
+    }
 }

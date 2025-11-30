@@ -19,4 +19,12 @@ class ProductController extends Controller
             __('Products retrieved successfully')
         );
     }
+
+    public function show(Product $product)
+    {
+        return $this->successResponse(
+            new ProductResource($product),
+            __('Product retrieved successfully')
+        );
+    }
 }

@@ -19,4 +19,12 @@ class PaymentWebhookLogController extends Controller
             __('Payment webhook logs retrieved successfully')
         );
     }
+
+    public function show(PaymentWebhookLog $paymentWebhookLog)
+    {
+        return $this->successResponse(
+            new PaymentWebhookLogResource($paymentWebhookLog),
+            __('Payment webhook log retrieved successfully')
+        );
+    }
 }
