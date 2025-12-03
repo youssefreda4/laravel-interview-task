@@ -16,8 +16,8 @@ class OrderResource extends JsonResource
     {
         return [
             'id'           => $this->id,
-            'product_id'   => $this->product_id,
-            'hold_id'      => $this->hold_id,
+            'product_id'   => $this->whenLoaded('product', fn () => new ProductResource($this->product)),
+            'hold_id'      => $this->whenLoaded('hold', fn () => new HoldResource($this->hold)),
             'quantity'     => $this->quantity,
             'price'        => $this->price,
             'total_price'  => $this->total_price,

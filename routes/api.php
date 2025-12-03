@@ -33,8 +33,13 @@ Route::prefix('orders')->controller(OrderController::class)->group(function () {
     Route::post('/', 'store');
 });
 
-// Payment Webhook
-Route::prefix('payments/webhook')->controller(PaymentWebhookLogController::class)->group(function () {
-    Route::get('/', 'index');
-    Route::get('/{paymentWebhookLog}', 'show');
-});
+// Payment Webhook (with idempotency middleware)
+Route::prefix('payments/webhook')
+    ->controller(PaymentWebhookLogController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{paymentWebhookLog}', 'show');
+
+        // Apply idempotency middleware to the POST endpoint
+        Route::post('/', 'process')->middleware('idempotency');
+    });

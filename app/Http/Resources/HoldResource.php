@@ -16,7 +16,7 @@ class HoldResource extends JsonResource
     {
         return [
             'id'          => $this->id,
-            'product_id'  => $this->product_id,
+            'product_id'  => $this->whenLoaded('product', fn () => new ProductResource($this->product)),
             'quantity'    => $this->quantity,
             'status'      => enum_data($this->status),
             'expires_at'  => $this->expires_at?->format('Y-m-d H:i:s'),

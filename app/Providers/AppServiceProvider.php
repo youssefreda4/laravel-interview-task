@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\PaymentWebhookLog;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,8 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::bind('paymentWebhookLog', function ($value) {
-            return PaymentWebhookLog::where('idempotency_key', $value)->firstOrFail();
-        });
+        //
     }
 }

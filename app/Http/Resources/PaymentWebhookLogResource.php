@@ -17,7 +17,7 @@ class PaymentWebhookLogResource extends JsonResource
         return [
             'id'               => $this->id,
             'idempotency_key'  => $this->idempotency_key,
-            'order_id'         => $this->order_id,
+            'order_id'         => $this->whenLoaded('order', fn () => new OrderResource($this->order)),
             'payload'          => $this->payload,
             'processed_at'     => $this->processed_at?->diffForHumans(),
             'created_at'       => $this->created_at?->diffForHumans(),
